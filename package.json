@@ -1,0 +1,26 @@
+{
+  "name": "react-services-extras",
+  "version": "0.1.0",
+  "description": "Extra services for react-services",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArseAssassin/react-services-extras.git"
+  },
+  "author": "Tuomas Kanerva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ArseAssassin/react-services-extras/issues"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.7.1",
+    "gulp": "^3.8.0",
+    "gulp-clean": "^0.3.0",
+    "gulp-coffee": "^2.0.1",
+    "gulp-mocha": "^0.4.1"
+  },
+  "homepage": "https://github.com/ArseAssassin/react-services-extras"
+}
