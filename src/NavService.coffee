@@ -37,9 +37,8 @@ Service = defineService "NavService", (services) ->
   path: () -> 
     services.document.location.pathname
 
-  title: () -> "Somelia"
+  title: () -> services.$("title").html()
   setTitle: () -> (title) -> 
-    completeTitle = "Somelia" + title
     services.$("title").html completeTitle
-    updateField "NavService#title", () -> completeTitle
 
+    Service.updateService("title")
