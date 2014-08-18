@@ -2,7 +2,7 @@
   "name": "react-services-extras",
   "version": "0.1.0",
   "description": "Extra services for react-services",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "gulp test"
   },

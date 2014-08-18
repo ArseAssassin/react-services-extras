@@ -1,4 +1,4 @@
-defineService = require("../index").defineService
+defineService = require("react-services").defineService
 
 _$ = null
 
@@ -12,3 +12,4 @@ poll = ->
   else
     setTimeout(poll, 1000)
 
+poll()

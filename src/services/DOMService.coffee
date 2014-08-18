@@ -1,4 +1,4 @@
-defineService = require("../index").defineService
+defineService = require("react-services").defineService
 
 Service = defineService "DOMService", ->
   document: -> document
