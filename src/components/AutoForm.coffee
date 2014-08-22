@@ -3,20 +3,15 @@ Form = require "./Form"
 module.exports = defineComponent 
   getDefaultProps: ->
     formatData: (it) -> it
+  getInitialState: ->
+    errors: {}
   setErrors: (errors) ->
-    iterateChildren = ((children) ->
-      for child in children
-        if child.length
-          iterateChildren(child)
-        else
-          if child.setErrors
-            child.setErrors errors
-    ).bind @
-
-    iterateChildren(@props.children)
+    @setState
+      errors: errors
   render: ->
     Form
       onSubmit: ((data) ->
+        @setErrors({})
         @props.send @props.formatData(data), ((data) ->
           if data.status == 200
             @props.onSuccess(data)
@@ -25,5 +20,12 @@ module.exports = defineComponent
         ).bind @
       ).bind @
 
-      @props.children
+      @props.children.map ((child) ->
+        if child.call
+          child(
+            @state.errors
+          )
+        else
+          child
+      ).bind @
 

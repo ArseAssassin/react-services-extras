@@ -37,5 +37,5 @@ module.exports = require("react-services").defineComponent
       page.push @props.error()
 
         
-    dom.span null,
+    dom.div null,
       page
