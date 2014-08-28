@@ -51,13 +51,12 @@ inputGroup = (child) ->
 formGroup = (child) ->
   defineComponent
     value: -> @refs.child.getDOMNode().value
-    getInitialState: ->
-      errors: []
+    getDefaultProps: ->
+      errors: {}
     hasErrors: ->
-      @state.errors.length > 0
-    setErrors: (errors) ->
-      @setState
-        errors: errors[@props.name] || []
+      @getErrors() && @getErrors().length > 0
+    getErrors: ->
+      @props.errors[@props.name]
     render: ->
       if @props.label
         label = dom.label
@@ -67,7 +66,7 @@ formGroup = (child) ->
       if @hasErrors()
         errors = dom.div
           className: "has-errors"
-          @state.errors.map (error) ->
+          @getErrors().map (error) ->
             dom.span 
               className: "error"
               error
