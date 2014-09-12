@@ -32,6 +32,11 @@ input = (type) ->
 
 
 text = input "text"
+textArea = defineComponent
+  render: ->
+    @transferPropsTo dom.textarea
+      className: "form-control #{@props.className}"
+      @props.children
 
 inputGroup = (child) ->
   defineComponent
@@ -132,7 +137,7 @@ module.exports =
   glyph:      defineComponent
     render: ->
       dom.span
-        className: "glyphicon glyphicon-#{@props.children}"
+        className: "glyphicon glyphicon-#{@props.children} #{@props.className}"
           
   caret:      span "caret"
   caretUp:    defineComponent
@@ -155,6 +160,7 @@ module.exports =
 
   formGroup:      formGroup
   textInput:      formGroup text
+  textArea:       formGroup textArea
   passwordInput:  formGroup input "password"
   datePicker:     formGroup input "date"
   submit:         formGroup defineComponent
