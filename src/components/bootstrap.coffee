@@ -182,7 +182,7 @@ module.exports =
 
   pagination: defineComponent
     setPage: (page) ->
-      if page < @props.pages && page >= 0
+      if page <= @props.pages && page >= 0
         @props.setPage(page)
 
     next: ->
