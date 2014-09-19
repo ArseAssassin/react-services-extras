@@ -130,7 +130,7 @@ module.exports =
         classes.push "col-lg-#{@props.lg}"
 
 
-      dom.div
+      @transferPropsTo dom.div
         className: classes.join(" ") + " " + @props.className
         @props.children
 
