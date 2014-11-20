@@ -1,10 +1,8 @@
-defineService = require("react-services").defineService
-
 currentPath = null
 
 navigate = (path) ->
   currentPath = path
-  Service.update()
+  Service.update("path")
 
 Service = defineService "NavService", (services) ->
   if services.window && services.$

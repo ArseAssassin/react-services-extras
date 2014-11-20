@@ -7,13 +7,13 @@ module.exports = defineComponent
       @props.onClick(e)
     else
       e.preventDefault();
-      @state.navigate(@getHref())
+      @services.navigate(@getHref())
     
   getHref: ->
     @props.href
 
   render: ->
-    @transferPropsTo getReact().DOM.a
+    getReact().DOM.a Object.assign {}, @props,
       href: @getHref()
       onClick: @onClick
       @props.children

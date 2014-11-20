@@ -1,5 +1,3 @@
-defineService = require("react-services").defineService
-
 _$ = null
 
 Service = defineService "JQueryService", (services) ->

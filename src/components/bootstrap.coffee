@@ -4,7 +4,7 @@ makeFactory = (nodeFactory) ->
   (className) ->
     defineComponent
       render: ->
-        @transferPropsTo nodeFactory
+        nodeFactory Object.assign {}, @props,
           className: className + " " + @props.className
           @props.children
 
@@ -16,7 +16,7 @@ a =     makeFactory Link
 button = (className) ->
   defineComponent
     render: ->
-      @transferPropsTo dom.button
+      dom.button Object.assign {}, @props,
         type: "button"
         className: "btn #{className} #{@props.className}"
         @props.children
@@ -25,7 +25,7 @@ button = (className) ->
 input = (type) ->
   defineComponent
     render: ->
-      @transferPropsTo dom.input
+      dom.input Object.assign {}, @props,
         className: "form-control #{@props.className}"
         type: type
         @props.children
@@ -34,7 +34,7 @@ input = (type) ->
 text = input "text"
 textArea = defineComponent
   render: ->
-    @transferPropsTo dom.textarea
+    dom.textarea Object.assign {}, @props,
       className: "form-control #{@props.className}"
       @props.children
 
@@ -50,7 +50,7 @@ inputGroup = (child) ->
       dom.div
         className: "input-group"
         addon
-        @transferPropsTo child()
+        child @props
 
 
 formGroup = (child) ->
@@ -81,7 +81,7 @@ formGroup = (child) ->
         key: @props.name
         label
         errors
-        @transferPropsTo child
+        child Object.assign {}, @props,
           id: @props.name
           ref: "child"
 
@@ -100,7 +100,7 @@ select = defineComponent
 
 
   render: ->
-    @transferPropsTo dom.select 
+    dom.select Object.assign {}, @props,
       className: "form-control"
       value: @getValue()
       onChange: ((e) ->
@@ -130,7 +130,7 @@ module.exports =
         classes.push "col-lg-#{@props.lg}"
 
 
-      @transferPropsTo dom.div
+      dom.div Object.assign {}, @props,
         className: classes.join(" ") + " " + @props.className
         @props.children
 
@@ -165,7 +165,7 @@ module.exports =
   datePicker:     formGroup input "date"
   submit:         formGroup defineComponent
     render: ->
-      @transferPropsTo dom.input
+      dom.input Object.assign {}, @props,
         type: "submit"
         className: "btn btn-primary"
 
@@ -176,7 +176,7 @@ module.exports =
 
   table: defineComponent
     render: ->
-      @transferPropsTo dom.table
+      dom.table Object.assign {}, @props,
         className: "table #{@props.className}"
         @props.children
 
@@ -204,7 +204,7 @@ module.exports =
           disabled: @props.currentPage >= @props.pages
 
         dom.a null, "›"
-      @transferPropsTo dom.ul
+      dom.ul Object.assign {}, @props,
         className: "pagination #{@props.className}"
         previous
         [1..Math.max(@props.pages, 1)].map ((n) ->

@@ -1,8 +1,10 @@
 dom = getReact().DOM
 
-module.exports = require("react-services").defineComponent
+module.exports = defineComponent
   subscribe:
     path: "NavService#path"
+
+  displayName: "Router"
 
   getDefaultProps: ->
     error: ->
@@ -10,26 +12,13 @@ module.exports = require("react-services").defineComponent
         dom.h1 null,
           "404"
   render: ->
-    path = @state.path
-    matches = (resource) ->
-      if resource.match
-        if resource.match(path)
-          resource
-      else 
-        for k, subResource of resource
-          if k != "_path"
-            r = matches(subResource)
-            if r
-              return r
-
-        null
-
+    path = @services.path
     page = []
 
     for child in [].concat @props.children
-      resource = matches(child.props.resource)
+      resource = child.props.resource.match(path)
       if resource
-        page.push child.handler.call(child, resource.parse(@state.path))
+        page.push child.props.handler.call(child, resource.parse(@services.path))
         if !@props.multiple
           break
 
