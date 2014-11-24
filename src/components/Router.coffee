@@ -18,7 +18,7 @@ module.exports = defineComponent
     for child in [].concat @props.children
       resource = child.props.resource.match(path)
       if resource
-        page.push child.props.handler.call(child, resource.parse(@services.path))
+        page.push child.props.handler.call(child, child.props.resource.parse(@services.path))
         if !@props.multiple
           break
 
