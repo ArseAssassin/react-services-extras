@@ -204,8 +204,7 @@ module.exports =
           disabled: @props.currentPage >= @props.pages
 
         dom.a null, "›"
-      dom.ul Object.assign {}, @props,
-        className: "pagination #{@props.className}"
+      dom.ul (Object.assign {}, @props, className: "pagination #{@props.className}"),
         previous
         [1..Math.max(@props.pages, 1)].map ((n) ->
           cx = 

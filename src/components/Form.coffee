@@ -1,5 +1,3 @@
-qs = require "qs"
-
 module.exports = defineComponent
   render: ->
     getReact().DOM.form
